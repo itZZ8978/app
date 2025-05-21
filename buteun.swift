@@ -28,7 +28,7 @@ struct Buteun: View {
                     }
                     .navigationDestination(isPresented: $esActive) {
                         ContentView(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
@@ -40,15 +40,15 @@ struct Buteun: View {
                     }
                     .navigationDestination(isPresented: $isActive) {
                         Alarm(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
                 Spacer()
                 VStack {
-                    Button(action: {
-                        print("더보기 탭으로 이동")
-                    }) {
+                    Button {
+                        action()
+                    } label: {
                         VStack {
                             Image(systemName: "ellipsis.circle.fill")
                             Text("더보기")
