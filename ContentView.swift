@@ -74,7 +74,7 @@ struct ContentView: View {
                     Text("• 대구, 맑은 날씨 계속")
                     Text("• 오늘의 주요 이슈: 집 가고 싶다")
                     Text("• 경제 뉴스: 주가 상승세 지속")
-                    Text("• 푸틴, 우크라이나 전쟁 협상 결렬")
+                    Text("• 러시아 - 우크라이나 전쟁 협상 결렬")
                     Text("• '전역까지 한 달' BTS, 말년 떼려니 설렘")
                     Text("• '재혼' 이상민, 이미 혼인신고 완료")
                 }
@@ -87,9 +87,9 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 VStack {
-                    Button(action: {
-                        print("홈 탭으로 이동")
-                    }) {
+                    Button {
+                        action()
+                    } label: {
                         VStack {
                             Image(systemName: "house.fill")
                             Text("홈")
@@ -104,7 +104,7 @@ struct ContentView: View {
                     }
                     .navigationDestination(isPresented: $isActive) {
                         Alarm(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
@@ -116,7 +116,7 @@ struct ContentView: View {
                     }
                     .navigationDestination(isPresented: $IsActive) {
                         Buteun(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
