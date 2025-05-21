@@ -10,6 +10,8 @@ import SwiftUI
 struct Alarm: View {
     @State private var esActive = false
     @State private var IsActive = false
+    let title: String
+    let action: () -> Void
     var body: some View {
         NavigationStack {
             Spacer()
@@ -25,7 +27,9 @@ struct Alarm: View {
                         esActive = true
                     }
                     .navigationDestination(isPresented: $esActive) {
-                        ContentView()
+                        ContentView(title: "클릭") {
+                            print("asdf")
+                        }
                     }
                 }
                 Spacer()
@@ -46,7 +50,9 @@ struct Alarm: View {
                         IsActive = true
                     }
                     .navigationDestination(isPresented: $IsActive) {
-                        Buteun()
+                        Buteun(title: "클릭") {
+                            print("asdf")
+                        }
                     }
                 }
                 Spacer()
@@ -58,5 +64,7 @@ struct Alarm: View {
 }
 
 #Preview {
-    Alarm()
+    Alarm(title: "클릭") {
+        print("아직 개발 중")
+    }
 }
