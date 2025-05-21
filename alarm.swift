@@ -28,15 +28,15 @@ struct Alarm: View {
                     }
                     .navigationDestination(isPresented: $esActive) {
                         ContentView(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
                 Spacer()
                 VStack {
-                    Button(action: {
-                        print("알림 탭으로 이동")
-                    }) {
+                    Button {
+                        action()
+                    } label: {
                         VStack {
                             Image(systemName: "bell.fill")
                             Text("알림")
@@ -51,7 +51,7 @@ struct Alarm: View {
                     }
                     .navigationDestination(isPresented: $IsActive) {
                         Buteun(title: "클릭") {
-                            print("asdf")
+                            print("아직 개발 중")
                         }
                     }
                 }
