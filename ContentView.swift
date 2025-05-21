@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var searchText: String = ""
+    @State private var search: String = ""
     @State private var isActive = false
     @State private var IsActive = false
+    let title: String
+    let action: () -> Void
     var body: some View {
         NavigationStack {
             VStack {
-                Button(action: {
-                    print("내 프로필")
-                }) {
+                Button {
+                    action()
+                } label: {
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .frame(width: 36, height: 36)
-                        .foregroundColor(.blue)
                 }
-                .padding(.leading, 300)
+                .padding(.leading, 270)
                 Text("Google")
                     .font(.system(size: 64, weight: .bold))
                     .foregroundColor(.blue)
@@ -30,13 +31,12 @@ struct ContentView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.gray)
-                    TextField("검색", text: $searchText)
+                    TextField("검색", text: $search)
                         .textFieldStyle(PlainTextFieldStyle())
-                    Button(action: {
-                        print("음성 검색")
-                    }) {
+                    Button {
+                        action()
+                    } label: {
                         Image(systemName: "mic")
-                            .foregroundColor(.gray)
                     }
                 }
                 HStack {
@@ -103,7 +103,9 @@ struct ContentView: View {
                         isActive = true
                     }
                     .navigationDestination(isPresented: $isActive) {
-                        Alarm()
+                        Alarm(title: "클릭") {
+                            print("asdf")
+                        }
                     }
                 }
                 Spacer()
@@ -113,7 +115,9 @@ struct ContentView: View {
                         IsActive = true
                     }
                     .navigationDestination(isPresented: $IsActive) {
-                        Buteun()
+                        Buteun(title: "클릭") {
+                            print("asdf")
+                        }
                     }
                 }
                 Spacer()
@@ -125,5 +129,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(title: "클릭") {
+        print("아직 개발 중")
+    }
 }
