@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var search: String = ""
+    @State private var search = ""
     @State private var isActive = false
     @State private var IsActive = false
     let title: String
