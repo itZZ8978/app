@@ -7,23 +7,37 @@
 
 import SwiftUI
 
+struct Bcv: View {
+    let sin: String
+    let label: String
+    let action: () -> Void
+    var body: some View {
+        VStack {
+            Image(systemName: sin)
+                .font(.title2)
+            Button(action: action) {
+                Text(label)
+            }
+        }
+    }
+}
+
 struct Alarm: View {
     @State private var esActive = false
-    @State private var IsActive = false
+    @State private var isActive = false
     let title: String
     let action: () -> Void
     var body: some View {
         NavigationStack {
-            Spacer()
-            Text("받은 알림 없음")
-                .font(.title)
-                .navigationBarTitle("알림")
-            Spacer()
-            HStack {
+            VStack {
                 Spacer()
-                VStack {
-                    Image(systemName: "house.fill")
-                    Button("홈") {
+                Text("받은 알림 없음")
+                    .font(.title)
+                    .navigationBarTitle("알림")
+                Spacer()
+                HStack {
+                    Spacer()
+                    Bcv(sin: "house.fill", label: "홈") {
                         esActive = true
                     }
                     .navigationDestination(isPresented: $esActive) {
@@ -31,34 +45,24 @@ struct Alarm: View {
                             print("아직 개발 중")
                         }
                     }
-                }
-                Spacer()
-                VStack {
-                    Button {
+                    Spacer()
+                    Bcv(sin: "bell.fill", label: "알림") {
                         action()
-                    } label: {
-                        VStack {
-                            Image(systemName: "bell.fill")
-                            Text("알림")
-                        }
                     }
-                }
-                Spacer()
-                VStack {
-                    Image(systemName: "ellipsis.circle.fill")
-                    Button("더보기") {
-                        IsActive = true
+                    Spacer()
+                    Bcv(sin: "ellipsis.circle.fill", label: "더보기") {
+                        isActive = true
                     }
-                    .navigationDestination(isPresented: $IsActive) {
+                    .navigationDestination(isPresented: $isActive) {
                         Buteun(title: "클릭") {
                             print("아직 개발 중")
                         }
                     }
+                    Spacer()
                 }
-                Spacer()
+                .padding()
+                .background(Color(.systemGray6))
             }
-            .padding()
-            .background(Color(.systemGray6))
         }
     }
 }
