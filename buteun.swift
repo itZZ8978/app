@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+struct BCV: View {
+    let stim: String
+    let label: String
+    let action: () -> Void
+    var body: some View {
+        VStack {
+            Image(systemName: stim)
+                .font(.title2)
+            Button(action: action) {
+                Text(label)
+            }
+        }
+    }
+}
+
 struct Buteun: View {
     @State private var esActive = false
     @State private var isActive = false
@@ -14,16 +29,15 @@ struct Buteun: View {
     let action: () -> Void
     var body: some View {
         NavigationStack {
-            Spacer()
-            Text("더보기 기능 없음")
-                .font(.title)
-                .navigationBarTitle("더보기")
-            Spacer()
-            HStack {
+            VStack {
                 Spacer()
-                VStack {
-                    Image(systemName: "house.fill")
-                    Button("홈") {
+                Text("더보기 기능 없음")
+                    .font(.title)
+                    .navigationBarTitle("더보기")
+                Spacer()
+                HStack {
+                    Spacer()
+                    BCV(stim: "house.fill", label: "홈") {
                         esActive = true
                     }
                     .navigationDestination(isPresented: $esActive) {
@@ -31,11 +45,8 @@ struct Buteun: View {
                             print("아직 개발 중")
                         }
                     }
-                }
-                Spacer()
-                VStack {
-                    Image(systemName: "bell.fill")
-                    Button("알림") {
+                    Spacer()
+                    BCV(stim: "bell.fill", label: "알림") {
                         isActive = true
                     }
                     .navigationDestination(isPresented: $isActive) {
@@ -43,22 +54,15 @@ struct Buteun: View {
                             print("아직 개발 중")
                         }
                     }
-                }
-                Spacer()
-                VStack {
-                    Button {
+                    Spacer()
+                    BCV(stim: "ellipsis.circle.fill", label: "더보기") {
                         action()
-                    } label: {
-                        VStack {
-                            Image(systemName: "ellipsis.circle.fill")
-                            Text("더보기")
-                        }
                     }
+                    Spacer()
                 }
-                Spacer()
+                .padding()
+                .background(Color(.systemGray6))
             }
-            .padding()
-            .background(Color(.systemGray6))
         }
     }
 }
